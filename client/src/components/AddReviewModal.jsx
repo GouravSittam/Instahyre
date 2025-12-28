@@ -55,27 +55,31 @@ export default function AddReviewModal({
 
   return (
     <div
-      className="fixed inset-0 bg-brutal-black/80 flex items-center justify-center p-4 z-50 animate-slide-in"
+      className="fixed inset-0 bg-brutal-black/90 flex items-center justify-center p-4 z-50 animate-slide-in"
       onClick={onClose}
     >
       <div
-        className="card-brutal bg-brutal-white max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        className="card-brutal bg-brutal-white max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-slide-in-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex justify-between items-start mb-6 pb-6 border-b-3 border-brutal-black">
+        <div className="flex justify-between items-start mb-6 pb-6 border-b-5 border-brutal-black">
           <div>
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-shadow-brutal mb-2">
-              {prefillPlace ? "Leave a Review" : "Add New Review"}
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-shadow-brutal-sm mb-2 relative inline-block">
+              <span className="relative z-10">
+                {prefillPlace ? "Leave a Review" : "Add New Review"}
+              </span>
+              <span className="absolute -bottom-1 left-0 w-1/3 h-2 bg-brutal-yellow -rotate-1 -z-10"></span>
             </h2>
-            <p className="font-bold uppercase text-sm tracking-wide text-brutal-gray-600">
+            <p className="font-bold uppercase text-sm tracking-wide text-brutal-gray-600 flex items-center gap-2">
+              <span className="inline-block w-2 h-2 bg-brutal-red"></span>
               Share your experience
             </p>
           </div>
           <button
             onClick={onClose}
-            className="w-10 h-10 flex items-center justify-center border-3 border-brutal-black bg-brutal-white
-                                 hover:bg-brutal-red hover:text-brutal-white transition-colors"
+            className="w-12 h-12 flex items-center justify-center border-5 border-brutal-black bg-brutal-white
+                                 hover:bg-brutal-red hover:text-brutal-white hover:rotate-90 transition-all duration-300"
           >
             <X className="w-6 h-6" strokeWidth={3} />
           </button>

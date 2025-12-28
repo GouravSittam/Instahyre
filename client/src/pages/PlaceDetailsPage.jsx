@@ -92,16 +92,20 @@ export default function PlaceDetailsPage() {
   return (
     <div className="min-h-screen">
       <div className="container-brutal section-brutal">
-        <Link to="/" className="btn-brutal mb-8 inline-flex items-center gap-2">
+        <Link
+          to="/"
+          className="btn-brutal mb-8 inline-flex items-center gap-2 hover:animate-shake"
+        >
           <ArrowLeft className="w-5 h-5" strokeWidth={3} />
           Back to Search
         </Link>
 
         {/* Place Header */}
-        <div className="card-brutal bg-brutal-white mb-8 rotate-slight">
+        <div className="card-brutal bg-brutal-white mb-8 animate-slide-in-up">
           <div className="mb-6">
-            <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-3 text-shadow-brutal">
-              {place.name}
+            <h1 className="text-5xl md:text-6xl font-black uppercase tracking-tighter mb-3 text-shadow-brutal relative inline-block">
+              <span className="relative z-10">{place.name}</span>
+              <span className="absolute -bottom-1 left-0 w-1/2 h-4 bg-brutal-red -rotate-1 -z-10"></span>
             </h1>
             <p className="flex items-center gap-2 font-mono font-bold text-lg text-brutal-gray-600">
               <MapPin className="w-5 h-5" strokeWidth={3} />
@@ -109,8 +113,8 @@ export default function PlaceDetailsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 pt-6 border-t-3 border-brutal-black">
-            <div className="p-4 bg-brutal-yellow border-3 border-brutal-black">
+          <div className="grid grid-cols-2 gap-4 pt-6 border-t-5 border-brutal-black">
+            <div className="p-4 bg-brutal-yellow border-5 border-brutal-black shadow-brutal hover:shadow-brutal-hover hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
               <div className="flex items-center gap-2 mb-2">
                 <Star
                   className="w-6 h-6 fill-brutal-black stroke-brutal-black"
@@ -126,7 +130,7 @@ export default function PlaceDetailsPage() {
                 Average Rating
               </span>
             </div>
-            <div className="p-4 bg-brutal-white border-3 border-brutal-black">
+            <div className="p-4 bg-brutal-white border-5 border-brutal-black shadow-brutal hover:shadow-brutal-hover hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
               <div className="flex items-center gap-2 mb-2">
                 <MessageSquare className="w-6 h-6" strokeWidth={3} />
                 <span className="text-3xl font-black">
@@ -143,11 +147,12 @@ export default function PlaceDetailsPage() {
         {/* Reviews Section */}
         <div>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-            <h2 className="text-4xl font-black uppercase tracking-tighter text-shadow-brutal">
-              Reviews
+            <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter text-shadow-brutal relative inline-block">
+              <span className="relative z-10">Reviews</span>
+              <span className="absolute -bottom-1 left-0 w-1/3 h-3 bg-brutal-yellow -rotate-1 -z-10"></span>
             </h2>
             <button
-              className="btn-brutal-accent flex items-center gap-2"
+              className="btn-brutal-accent flex items-center gap-2 animate-bounce-brutal"
               onClick={() => setShowAddReview(true)}
             >
               {hasUserReview ? (
@@ -182,17 +187,17 @@ export default function PlaceDetailsPage() {
               {reviews.map((review, index) => (
                 <div
                   key={review.id}
-                  className={`card-brutal ${
+                  className={`card-brutal group ${
                     review.is_current_user
-                      ? "bg-brutal-yellow border-5"
-                      : "bg-brutal-white"
-                  }`}
-                  style={{ animationDelay: `${index * 50}ms` }}
+                      ? "bg-brutal-yellow border-5 animate-pulse-shadow"
+                      : "bg-brutal-white border-5 hover:shadow-brutal-lg hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all"
+                  } animate-slide-in-up`}
+                  style={{ animationDelay: `${index * 60}ms` }}
                 >
                   <div className="flex flex-wrap justify-between items-start gap-3 mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-brutal-black border-3 border-brutal-black flex items-center justify-center">
-                        <span className="text-brutal-yellow font-black text-xl">
+                      <div className="w-14 h-14 bg-brutal-black border-5 border-brutal-black flex items-center justify-center group-hover:rotate-12 transition-transform">
+                        <span className="text-brutal-yellow font-black text-2xl">
                           {review.user_name.charAt(0).toUpperCase()}
                         </span>
                       </div>
@@ -202,12 +207,12 @@ export default function PlaceDetailsPage() {
                         </span>
                         {review.is_current_user && (
                           <span className="badge-brutal bg-brutal-red text-brutal-white border-brutal-black">
-                            Your Review
+                            \ud83c\udfaf Your Review
                           </span>
                         )}
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 font-mono font-bold text-sm">
+                    <div className="flex items-center gap-2 font-mono font-bold text-sm px-3 py-1 border-3 border-brutal-black bg-brutal-white">
                       <Calendar className="w-4 h-4" strokeWidth={3} />
                       {formatDate(review.created_at)}
                     </div>

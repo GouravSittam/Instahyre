@@ -51,17 +51,19 @@ export default function SearchPage() {
     <div className="min-h-screen">
       <div className="container-brutal section-brutal">
         {/* Header Section */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 animate-slide-in">
           <div>
-            <h1 className="text-5xl md:text-6xl font-black uppercase tracking-tighter mb-2 text-shadow-brutal">
-              Discover Places
+            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-3 text-shadow-brutal relative inline-block">
+              <span className="relative z-10">Discover Places</span>
+              <span className="absolute -bottom-2 left-0 w-full h-4 bg-brutal-red -rotate-1 -z-10"></span>
             </h1>
-            <p className="text-lg font-bold uppercase tracking-wide">
+            <p className="text-lg md:text-xl font-bold uppercase tracking-wide flex items-center gap-2">
+              <span className="inline-block w-3 h-3 bg-brutal-red animate-pulse"></span>
               Find the best spots around
             </p>
           </div>
           <button
-            className="btn-brutal-accent flex items-center gap-2"
+            className="btn-brutal-accent flex items-center gap-2 animate-bounce-brutal"
             onClick={() => setShowAddReview(true)}
           >
             <Plus className="w-5 h-5" strokeWidth={3} />
@@ -70,12 +72,12 @@ export default function SearchPage() {
         </div>
 
         {/* Search Form */}
-        <div className="card-brutal mb-8 bg-brutal-white">
+        <div className="card-brutal mb-8 bg-brutal-white animate-slide-in-up">
           <form onSubmit={handleSearch} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block mb-2 font-bold uppercase text-sm tracking-wider">
-                  <Search className="inline w-4 h-4 mr-2" strokeWidth={3} />
+              <div className="relative">
+                <label className="block mb-2 font-bold uppercase text-sm tracking-wider flex items-center gap-2">
+                  <Search className="inline w-4 h-4" strokeWidth={3} />
                   Search by Name
                 </label>
                 <input
@@ -87,9 +89,9 @@ export default function SearchPage() {
                 />
               </div>
 
-              <div>
-                <label className="block mb-2 font-bold uppercase text-sm tracking-wider">
-                  <Filter className="inline w-4 h-4 mr-2" strokeWidth={3} />
+              <div className="relative">
+                <label className="block mb-2 font-bold uppercase text-sm tracking-wider flex items-center gap-2">
+                  <Filter className="inline w-4 h-4" strokeWidth={3} />
                   Min Rating
                 </label>
                 <select
@@ -109,7 +111,7 @@ export default function SearchPage() {
 
             <button
               type="submit"
-              className="btn-brutal-primary w-full sm:w-auto"
+              className="btn-brutal-primary w-full sm:w-auto text-lg"
             >
               <Search className="inline w-5 h-5 mr-2" strokeWidth={3} />
               Search
@@ -137,9 +139,9 @@ export default function SearchPage() {
           </div>
         ) : (
           <div>
-            <div className="mb-6 p-4 bg-brutal-black text-brutal-yellow border-3 border-brutal-black inline-block">
+            <div className="mb-6 p-4 bg-brutal-black text-brutal-yellow border-5 border-brutal-black inline-block shadow-brutal animate-pulse-shadow">
               <span className="font-bold uppercase text-sm tracking-wider">
-                Found {places.length} place{places.length !== 1 ? "s" : ""}
+                🎯 Found {places.length} place{places.length !== 1 ? "s" : ""}
               </span>
             </div>
 

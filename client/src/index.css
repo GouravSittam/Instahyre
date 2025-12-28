@@ -9,6 +9,20 @@
 
   body {
     @apply bg-brutal-yellow font-brutal text-brutal-black antialiased;
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 49px,
+        rgba(0, 0, 0, 0.03) 49px,
+        rgba(0, 0, 0, 0.03) 50px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 49px,
+        rgba(0, 0, 0, 0.03) 49px,
+        rgba(0, 0, 0, 0.03) 50px
+      );
   }
 
   h1,
@@ -25,44 +39,80 @@
   /* Brutalist Button Styles */
   .btn-brutal {
     @apply inline-flex items-center justify-center px-6 py-3 font-bold uppercase tracking-wider
-           border-3 border-brutal-black bg-brutal-white text-brutal-black
+           border-5 border-brutal-black bg-brutal-white text-brutal-black
            shadow-brutal transition-all duration-200
            hover:shadow-brutal-hover hover:translate-x-[2px] hover:translate-y-[2px]
            active:translate-x-[8px] active:translate-y-[8px] active:shadow-none
-           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-brutal disabled:hover:translate-x-0 disabled:hover:translate-y-0;
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-brutal disabled:hover:translate-x-0 disabled:hover:translate-y-0
+           relative overflow-hidden;
+  }
+
+  .btn-brutal::before {
+    content: "";
+    @apply absolute inset-0 bg-brutal-black translate-x-[-100%] transition-transform duration-300;
+    z-index: -1;
+  }
+
+  .btn-brutal:hover::before {
+    @apply translate-x-0;
+  }
+
+  .btn-brutal:hover {
+    @apply text-brutal-yellow;
   }
 
   .btn-brutal-primary {
     @apply btn-brutal bg-brutal-black text-brutal-white;
   }
 
+  .btn-brutal-primary::before {
+    @apply bg-brutal-red;
+  }
+
   .btn-brutal-accent {
     @apply btn-brutal bg-brutal-red text-brutal-white;
   }
 
+  .btn-brutal-accent::before {
+    @apply bg-brutal-black;
+  }
+
   .btn-brutal-sm {
-    @apply btn-brutal px-4 py-2 text-sm shadow-brutal-sm
+    @apply btn-brutal px-4 py-2 text-sm shadow-brutal-sm border-3
            hover:shadow-[2px_2px_0px_0px_#000]
            active:translate-x-[4px] active:translate-y-[4px];
   }
 
   /* Brutalist Card */
   .card-brutal {
-    @apply border-3 border-brutal-black bg-brutal-white shadow-brutal p-6;
+    @apply border-5 border-brutal-black bg-brutal-white shadow-brutal p-6 
+           relative;
+  }
+
+  .card-brutal::after {
+    content: "";
+    @apply absolute -top-2 -right-2 w-8 h-8 bg-brutal-yellow border-3 border-brutal-black;
+    transform: rotate(45deg);
   }
 
   .card-brutal-hover {
-    @apply card-brutal transition-all duration-200
-           hover:shadow-brutal-lg hover:translate-x-[-4px] hover:translate-y-[-4px];
+    @apply card-brutal transition-all duration-300
+           hover:shadow-brutal-lg hover:translate-x-[-4px] hover:translate-y-[-4px]
+           hover:rotate-[-1deg] cursor-pointer;
+  }
+
+  .card-brutal-hover:hover::after {
+    @apply bg-brutal-red;
   }
 
   /* Brutalist Input */
   .input-brutal {
-    @apply w-full px-4 py-3 border-3 border-brutal-black bg-brutal-white
+    @apply w-full px-4 py-3 border-5 border-brutal-black bg-brutal-white
            font-mono font-bold text-brutal-black
            focus:outline-none focus:ring-0 focus:border-brutal-black
-           focus:shadow-brutal-sm
-           placeholder:text-brutal-gray-400 placeholder:font-normal;
+           focus:shadow-brutal-sm focus:translate-x-[-2px] focus:translate-y-[-2px]
+           placeholder:text-brutal-gray-400 placeholder:font-normal
+           transition-all duration-200;
   }
 
   /* Brutalist Container */
@@ -82,20 +132,25 @@
 
   /* Brutalist Badge */
   .badge-brutal {
-    @apply inline-block px-3 py-1 border-2 border-brutal-black bg-brutal-white
-           font-bold text-xs uppercase tracking-wider;
+    @apply inline-block px-3 py-1 border-3 border-brutal-black bg-brutal-white
+           font-bold text-xs uppercase tracking-wider
+           shadow-[2px_2px_0px_0px_#000];
   }
 
   /* Loading Spinner */
   .spinner-brutal {
-    @apply w-12 h-12 border-5 border-brutal-black border-t-brutal-yellow
+    @apply w-16 h-16 border-5 border-brutal-black border-t-brutal-red
            rounded-full animate-spin;
   }
 }
 
 @layer utilities {
   .text-shadow-brutal {
-    text-shadow: 3px 3px 0px #000000;
+    text-shadow: 4px 4px 0px #000000;
+  }
+
+  .text-shadow-brutal-sm {
+    text-shadow: 2px 2px 0px #000000;
   }
 
   .rotate-slight {
@@ -104,6 +159,10 @@
 
   .rotate-slight-inverse {
     transform: rotate(1deg);
+  }
+
+  .skew-brutal {
+    transform: skew(-2deg);
   }
 }
 

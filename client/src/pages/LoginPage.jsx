@@ -46,13 +46,15 @@ export default function LoginPage() {
       <div className="w-full max-w-md relative z-10">
         {/* Logo Section */}
         <div className="text-center mb-8 animate-slide-in">
-          <div className="inline-flex items-center justify-center w-24 h-24 bg-brutal-black border-5 border-brutal-black shadow-brutal-lg mb-6">
+          <div className="inline-flex items-center justify-center w-24 h-24 bg-brutal-black border-5 border-brutal-black shadow-brutal-lg mb-6 animate-bounce-brutal">
             <MapPin className="w-14 h-14 text-brutal-yellow" strokeWidth={3} />
           </div>
-          <h1 className="text-5xl font-black uppercase tracking-tighter mb-2 text-shadow-brutal">
-            Welcome Back
+          <h1 className="text-6xl font-black uppercase tracking-tighter mb-3 text-shadow-brutal relative inline-block">
+            <span className="relative z-10">Welcome Back</span>
+            <span className="absolute -bottom-1 left-0 w-3/4 h-3 bg-brutal-red -rotate-1 -z-10"></span>
           </h1>
-          <p className="text-lg font-bold uppercase tracking-wide">
+          <p className="text-lg font-bold uppercase tracking-wide flex items-center justify-center gap-2">
+            <span className="inline-block w-2 h-2 bg-brutal-red animate-pulse"></span>
             Sign in to continue
           </p>
         </div>
