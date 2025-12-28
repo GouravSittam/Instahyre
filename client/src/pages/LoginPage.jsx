@@ -15,12 +15,15 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setError(""); // clear any previous errors
     setLoading(true);
 
     try {
+      // Call login API
       const data = await api.login(phoneNumber, password);
+      // Save user data and token
       login(data.user, data.token);
+      // Redirect to home
       navigate("/");
     } catch (err) {
       setError(err.message);

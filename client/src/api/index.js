@@ -1,9 +1,10 @@
 const API_BASE = "/api";
 
+// API service class to handle all backend requests
 class ApiService {
   constructor() {
     this.baseUrl = API_BASE;
-    this.onUnauthorized = null;
+    this.onUnauthorized = null; // callback for handling auth failures
   }
 
   setUnauthorizedHandler(handler) {
@@ -14,6 +15,7 @@ class ApiService {
     return localStorage.getItem("token");
   }
 
+  // Generic request handler - all API calls go through this
   async request(endpoint, options = {}) {
     const url = `${this.baseUrl}${endpoint}`;
     const token = this.getToken();
@@ -42,11 +44,11 @@ class ApiService {
 
       // Handle unauthorized/forbidden errors
       if (response.status === 401 || response.status === 403) {
-        // Clear invalid token
+        // Clear invalid token from storage
         localStorage.removeItem("token");
         localStorage.removeItem("user");
 
-        // Call logout handler if set
+        // Call logout handler if set (triggers app-wide logout)
         if (this.onUnauthorized) {
           this.onUnauthorized();
         }

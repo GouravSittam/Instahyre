@@ -6,6 +6,7 @@ import AddReviewModal from "../components/AddReviewModal";
 import { Search, Plus, Store, Filter } from "lucide-react";
 
 export default function SearchPage() {
+  // Component state - managing search and results
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchName, setSearchName] = useState("");
@@ -14,14 +15,17 @@ export default function SearchPage() {
 
   const navigate = useNavigate();
 
+  // useCallback to prevent unnecessary re-renders
   const fetchPlaces = useCallback(
     async (name = searchName, rating = minRating) => {
       setLoading(true);
       try {
         const data = await api.searchPlaces(name, rating);
         setPlaces(data.places);
+        console.log(`Loaded ${data.places.length} places`); // debug log
       } catch (err) {
         console.error("Search error:", err);
+        // TODO: Add user-friendly error message
       } finally {
         setLoading(false);
       }

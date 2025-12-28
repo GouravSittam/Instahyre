@@ -41,8 +41,10 @@ export default function AddReviewModal({
     setLoading(true);
 
     try {
+      // Submit review to API
       await api.addReview(placeName, placeAddress, rating, text.trim());
       setSuccess("Review submitted successfully!");
+      // Close modal after short delay to show success message
       setTimeout(() => {
         onSuccess();
       }, 1000);

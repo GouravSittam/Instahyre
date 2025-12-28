@@ -24,6 +24,7 @@ function formatDate(dateString) {
 
 export default function PlaceDetailsPage() {
   const { id } = useParams();
+  // State for place data and reviews
   const [place, setPlace] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
