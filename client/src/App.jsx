@@ -1,3 +1,8 @@
+/**
+ * PlaceReview - Local Business Discovery Platform
+ * Author: Gourav Chaudhary
+ * Main App Component with Routing
+ */
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { api } from "./api";

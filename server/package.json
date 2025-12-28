@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "REST API for place reviews",
   "main": "src/index.js",
+  "author": "Gourav Chaudhary",
+  "license": "MIT",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",

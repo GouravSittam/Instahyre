@@ -613,7 +613,13 @@ Contributions are always welcome! Here's how:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📝 License
+## �‍💻 Author
+
+**Gourav Chaudhary**
+
+Built with passion for creating modern web applications with beautiful user experiences.
+
+## �📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
 
@@ -636,7 +642,9 @@ If you encounter any issues or have questions:
 
 <div align="center">
 
-**Built with ❤️ and ☕ using React, Express, and SQLite**
+**Built with ❤️ and ☕ by Gourav Chaudhary**
+
+**Stack: React • Express • SQLite • Tailwind CSS**
 
 ⭐ Star this repo if you found it helpful!
 

@@ -1,3 +1,8 @@
+/**
+ * PlaceReview API Server
+ * Author: Gourav Chaudhary
+ * Express.js REST API for place reviews and ratings
+ */
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
