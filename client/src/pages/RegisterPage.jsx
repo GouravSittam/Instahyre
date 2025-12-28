@@ -1,0 +1,183 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { api } from "../api";
+import {
+  MapPin,
+  User,
+  Phone,
+  Lock,
+  AlertCircle,
+  CheckCircle,
+} from "lucide-react";
+
+export default function RegisterPage() {
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const data = await api.register(name, phoneNumber, password);
+      login(data.user, data.token);
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Brutalist Background Pattern */}
+      <div className="absolute inset-0 grid grid-cols-12 gap-0">
+        {[...Array(60)].map((_, i) => (
+          <div
+            key={i}
+            className={`border border-brutal-black ${
+              i % 4 === 0 ? "bg-brutal-white/10" : ""
+            }`}
+          />
+        ))}
+      </div>
+
+      <div className="w-full max-w-md relative z-10">
+        {/* Logo Section */}
+        <div className="text-center mb-8 animate-slide-in">
+          <div className="inline-flex items-center justify-center w-24 h-24 bg-brutal-red border-5 border-brutal-black shadow-brutal-lg mb-6">
+            <MapPin className="w-14 h-14 text-brutal-white" strokeWidth={3} />
+          </div>
+          <h1 className="text-5xl font-black uppercase tracking-tighter mb-2 text-shadow-brutal">
+            Create Account
+          </h1>
+          <p className="text-lg font-bold uppercase tracking-wide">
+            Join to review places
+          </p>
+        </div>
+
+        {/* Main Card */}
+        <div className="card-brutal bg-brutal-white rotate-slight-inverse">
+          {error && (
+            <div className="mb-6 p-4 bg-brutal-red border-3 border-brutal-black flex items-start gap-3 animate-bounce-brutal">
+              <AlertCircle
+                className="w-6 h-6 flex-shrink-0 text-brutal-white"
+                strokeWidth={3}
+              />
+              <p className="font-bold text-brutal-white uppercase text-sm">
+                {error}
+              </p>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="block mb-2 font-bold uppercase text-sm tracking-wider">
+                <User className="inline w-4 h-4 mr-2" strokeWidth={3} />
+                Full Name
+              </label>
+              <input
+                type="text"
+                className="input-brutal"
+                placeholder="ENTER YOUR NAME"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2 font-bold uppercase text-sm tracking-wider">
+                <Phone className="inline w-4 h-4 mr-2" strokeWidth={3} />
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                className="input-brutal"
+                placeholder="ENTER YOUR PHONE"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2 font-bold uppercase text-sm tracking-wider">
+                <Lock className="inline w-4 h-4 mr-2" strokeWidth={3} />
+                Password
+              </label>
+              <input
+                type="password"
+                className="input-brutal"
+                placeholder="MIN 6 CHARACTERS"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength={6}
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2 font-bold uppercase text-sm tracking-wider">
+                <CheckCircle className="inline w-4 h-4 mr-2" strokeWidth={3} />
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                className="input-brutal"
+                placeholder="CONFIRM PASSWORD"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="btn-brutal-primary w-full text-lg mt-6"
+              disabled={loading}
+            >
+              {loading ? "CREATING ACCOUNT..." : "CREATE ACCOUNT"}
+            </button>
+          </form>
+        </div>
+
+        {/* Footer */}
+        <div className="mt-8 text-center">
+          <div className="inline-block p-4 bg-brutal-white border-3 border-brutal-black shadow-brutal-sm">
+            <span className="font-bold uppercase text-sm">
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="text-brutal-red underline hover:bg-brutal-red hover:text-brutal-white transition-colors px-1"
+              >
+                LOGIN HERE
+              </Link>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

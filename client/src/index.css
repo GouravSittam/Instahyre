@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-brutal-black;
+  }
+
+  body {
+    @apply bg-brutal-yellow font-brutal text-brutal-black antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold uppercase tracking-tight;
+  }
+}
+
+@layer components {
+  /* Brutalist Button Styles */
+  .btn-brutal {
+    @apply inline-flex items-center justify-center px-6 py-3 font-bold uppercase tracking-wider
+           border-3 border-brutal-black bg-brutal-white text-brutal-black
+           shadow-brutal transition-all duration-200
+           hover:shadow-brutal-hover hover:translate-x-[2px] hover:translate-y-[2px]
+           active:translate-x-[8px] active:translate-y-[8px] active:shadow-none
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-brutal disabled:hover:translate-x-0 disabled:hover:translate-y-0;
+  }
+
+  .btn-brutal-primary {
+    @apply btn-brutal bg-brutal-black text-brutal-white;
+  }
+
+  .btn-brutal-accent {
+    @apply btn-brutal bg-brutal-red text-brutal-white;
+  }
+
+  .btn-brutal-sm {
+    @apply btn-brutal px-4 py-2 text-sm shadow-brutal-sm
+           hover:shadow-[2px_2px_0px_0px_#000]
+           active:translate-x-[4px] active:translate-y-[4px];
+  }
+
+  /* Brutalist Card */
+  .card-brutal {
+    @apply border-3 border-brutal-black bg-brutal-white shadow-brutal p-6;
+  }
+
+  .card-brutal-hover {
+    @apply card-brutal transition-all duration-200
+           hover:shadow-brutal-lg hover:translate-x-[-4px] hover:translate-y-[-4px];
+  }
+
+  /* Brutalist Input */
+  .input-brutal {
+    @apply w-full px-4 py-3 border-3 border-brutal-black bg-brutal-white
+           font-mono font-bold text-brutal-black
+           focus:outline-none focus:ring-0 focus:border-brutal-black
+           focus:shadow-brutal-sm
+           placeholder:text-brutal-gray-400 placeholder:font-normal;
+  }
+
+  /* Brutalist Container */
+  .container-brutal {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Brutalist Section */
+  .section-brutal {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  /* Brutalist Grid */
+  .grid-brutal {
+    @apply grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  /* Brutalist Badge */
+  .badge-brutal {
+    @apply inline-block px-3 py-1 border-2 border-brutal-black bg-brutal-white
+           font-bold text-xs uppercase tracking-wider;
+  }
+
+  /* Loading Spinner */
+  .spinner-brutal {
+    @apply w-12 h-12 border-5 border-brutal-black border-t-brutal-yellow
+           rounded-full animate-spin;
+  }
+}
+
+@layer utilities {
+  .text-shadow-brutal {
+    text-shadow: 3px 3px 0px #000000;
+  }
+
+  .rotate-slight {
+    transform: rotate(-1deg);
+  }
+
+  .rotate-slight-inverse {
+    transform: rotate(1deg);
+  }
+}
+
+/* Custom Animations */
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce-brutal {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+.animate-bounce-brutal {
+  animation: bounce-brutal 0.5s ease-in-out;
+}
