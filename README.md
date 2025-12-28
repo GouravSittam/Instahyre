@@ -690,6 +690,4 @@ If you encounter any issues or have questions:
 
 - id, place_id, user_id, rating (1-5), text, created_at
 - Unique constraint on (place_id, user_id)
-  #   I n s t a h y r e 
-   
-   
+  #
